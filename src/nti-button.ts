@@ -3,23 +3,11 @@ import { customElement, property } from 'lit/decorators.js'
 import litLogo from './assets/lit.svg'
 import viteLogo from '/vite.svg'
 
-/**
- * An example element.
- *
- * @slot - This element has a slot
- * @csspart button - The button
- */
-@customElement('my-element')
-export class MyElement extends LitElement {
-  /**
-   * Copy for the read the docs hint.
-   */
+@customElement('nti-button')
+export class NTIButton extends LitElement {
   @property()
   docsHint = 'Click on the Vite and Lit logos to learn more'
 
-  /**
-   * The number of times the button has been clicked.
-   */
   @property({ type: Number })
   count = 0
 
@@ -122,6 +110,6 @@ export class MyElement extends LitElement {
 
 declare global {
   interface HTMLElementTagNameMap {
-    'my-element': MyElement
+    'nti-button': MyElement
   }
 }

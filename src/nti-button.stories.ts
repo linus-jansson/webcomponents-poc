@@ -1,12 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import type { ButtonProps } from './Button';
-import { Button } from './Button';
+import type { ButtonProps } from './nti-button';
+import { NTIButton } from './nti-button';
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta = {
   title: 'Example/Button',
   tags: ['autodocs'],
-  render: (args) => Button(args),
+  render: (args) => (new NTIButton()).render(),
   argTypes: {
     backgroundColor: { control: 'color' },
     onClick: { action: 'onClick' },
