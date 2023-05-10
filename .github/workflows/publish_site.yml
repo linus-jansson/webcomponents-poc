@@ -1,0 +1,25 @@
+name: Publish Package to npmjs
+on:
+  push:
+    branches:
+      - main
+jobs:
+  githubpages:
+    runs-on: ubuntu-latest
+    steps:
+        - name: Checkout repository
+          uses: actions/checkout@v3
+
+        - uses: actions/setup-node@v2
+          with:
+            node-version: '16.x'
+
+        - working-directory: ./page
+          run: npm ci    
+            
+        - name: checkout repository
+          uses: peaceiris/actions-gh-pages@v3
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            publish_dir: ./page    
+           
