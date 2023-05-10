@@ -1,53 +1,55 @@
-import { LitElement, css, html } from 'lit'
+import { LitElement, PropertyValueMap, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-
+import { format as dateFormater}  from 'date-fns'
 @customElement('counting-clock')
 export class CountingClock extends LitElement {
        
     @property({ type: String })
-    format = null
+    format = "HH:mm:ss"
 
     @property({ type: Number })
     tickInterval = 1000
 
-    private dateNow = this._getFormattedTime();
-    private ticker: NodeJS.Timer | undefined;
+    private formatTime = (time: Date) => dateFormater(time, this.format);
+    private dateNow = this.formatTime(new Date())!;
+    private ticker : NodeJS.Timer | undefined;
+    private setTicker = () => {
+        this.ticker = setInterval(this.updateTime, this.tickInterval);
+    }
+    private updateTime = () => {
+        this.dateNow = this.formatTime(new Date());
+        this.requestUpdate();
+    }
 
-    render = () => this.dateNow
+    protected updated(_changedProperties: PropertyValueMap<any> | Map<PropertyKey, unknown>): void {
+        super.updated(_changedProperties);
+        
+        if (_changedProperties.size > 0) {
+            // if old value is not the same as new value and ticker interval is set
+            if (_changedProperties.get("tickInterval") !== undefined && 
+                _changedProperties.get("tickInterval") !== this.tickInterval
+                ) {
+                clearInterval(this.ticker);
+                this.setTicker();
+            }
+        }
+    }
 
     connectedCallback(): void {
         super.connectedCallback();
-        console.log("connectedCallback")
-        this.ticker = setInterval(() => {
-            this.dateNow = this._getFormattedTime()
-            this.requestUpdate();
-        }, this.tickInterval)
+        this.setTicker();
     }
 
     disconnectedCallback(): void {
         super.disconnectedCallback();
         console.log("disconnectedCallback");
-        console.log(this.ticker)
         clearInterval(this.ticker);
     }
 
-    private _getFormattedTime() {
-        const date = new Date()
+    render() {
+        return html`<span>${this.dateNow}</span>`;
+    };
 
-        // depending on this.format return different formats
-        const hours = (date.getHours() < 10 ? '0' : '') + date.getHours();
-        const minutes = (date.getMinutes() < 10 ? '0' : '') + date.getMinutes();
-        const seconds = (date.getSeconds() < 10 ? '0' : '') + date.getSeconds();
-        const milliseconds = (date.getMilliseconds() < 10 ? '0' : '') + date.getMilliseconds();
-        // date.toISOString().slice(0, 10) + " " + hours + ":" + minutes + ":" + seconds;
-        return `${hours}:${minutes}:${seconds}:${milliseconds}`
-    }
-
-
-
-    static styles = css`
-
-    `
 }
 
 declare global {
