@@ -1,115 +1,69 @@
 import { LitElement, css, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import litLogo from './assets/lit.svg'
-import viteLogo from '/vite.svg'
 
 @customElement('nti-button')
 export class NTIButton extends LitElement {
-  @property()
-  docsHint = 'Click on the Vite and Lit logos to learn more'
+       
+    @property({ type: String })
+    href = null
 
-  @property({ type: Number })
-  count = 0
+    @property({ type: Function })
+    onClick = () => {};
 
-  render() {
-    return html`
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src=${viteLogo} class="logo" alt="Vite logo" />
-        </a>
-        <a href="https://lit.dev" target="_blank">
-          <img src=${litLogo} class="logo lit" alt="Lit logo" />
-        </a>
-      </div>
-      <slot></slot>
-      <div class="card">
-        <button @click=${this._onClick} part="button">
-          count is ${this.count}
-        </button>
-      </div>
-      <p class="read-the-docs">${this.docsHint}</p>
+    render() {
+        return html`
+            <button class="custom-button" @click=${this._onClick}>
+                <slot>
+                    Det här borde inte synnas
+                </slot>
+            </button>
+        `
+    }
+
+    private _onClick() {
+        if (this.href && (this.href as string)?.length > 0) {
+            window.location.href = this.href
+        }
+        
+        if (this.onClick) {
+            this.onClick()
+        }
+    }
+
+    static styles = css`
+        .custom-button {
+            font-family: Helvetica;
+            font-size: 19px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px 0 rgba(0,0,0,.33);
+            border-radius: 7px;
+            text-transform: uppercase;
+            padding: 21px 54px;
+            color: #fff;
+            background-image: 
+                linear-gradient(
+                    -90deg,
+                    #dd0890 0,
+                    #200c9c 30%,
+                    #4a0082 70%,
+                    #dd0890 100%
+                );
+            cursor: pointer;
+            background-size: 300% 100%;
+            transition: all .4s ease-in-out;
+            border: 0;
+        }
+        .custom-button:hover{
+            background-position: 100% 0;
+            -webkit-transition: all .4s ease-in-out;
+            -o-transition: all .4s ease-in-out;
+            transition: all .4s ease-in-out;
+        }
     `
-  }
-
-  private _onClick() {
-    this.count++
-  }
-
-  static styles = css`
-    :host {
-      max-width: 1280px;
-      margin: 0 auto;
-      padding: 2rem;
-      text-align: center;
-    }
-
-    .logo {
-      height: 6em;
-      padding: 1.5em;
-      will-change: filter;
-      transition: filter 300ms;
-    }
-    .logo:hover {
-      filter: drop-shadow(0 0 2em #646cffaa);
-    }
-    .logo.lit:hover {
-      filter: drop-shadow(0 0 2em #325cffaa);
-    }
-
-    .card {
-      padding: 2em;
-    }
-
-    .read-the-docs {
-      color: #888;
-    }
-
-    ::slotted(h1) {
-      font-size: 3.2em;
-      line-height: 1.1;
-    }
-
-    a {
-      font-weight: 500;
-      color: #646cff;
-      text-decoration: inherit;
-    }
-    a:hover {
-      color: #535bf2;
-    }
-
-    button {
-      border-radius: 8px;
-      border: 1px solid transparent;
-      padding: 0.6em 1.2em;
-      font-size: 1em;
-      font-weight: 500;
-      font-family: inherit;
-      background-color: #1a1a1a;
-      cursor: pointer;
-      transition: border-color 0.25s;
-    }
-    button:hover {
-      border-color: #646cff;
-    }
-    button:focus,
-    button:focus-visible {
-      outline: 4px auto -webkit-focus-ring-color;
-    }
-
-    @media (prefers-color-scheme: light) {
-      a:hover {
-        color: #747bff;
-      }
-      button {
-        background-color: #f9f9f9;
-      }
-    }
-  `
 }
 
 declare global {
-  interface HTMLElementTagNameMap {
-    'nti-button': MyElement
-  }
+    interface HTMLElementTagNameMap {
+        'nti-button': NTIButton
+    }
 }

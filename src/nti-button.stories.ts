@@ -1,49 +1,31 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
-import type { ButtonProps } from './nti-button';
-import { NTIButton } from './nti-button';
+import { LitElement, html } from 'lit';
+import './nti-button';
+
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta = {
-  title: 'Example/Button',
+  title: 'NTI/Buttons',
   tags: ['autodocs'],
-  render: (args) => (new NTIButton()).render(),
+  render: (args: any) => html`<nti-button .href=${args.href} .onClick=${() => console.log("Hello world")} >${args.label}</nti-button>`,
   argTypes: {
-    backgroundColor: { control: 'color' },
     onClick: { action: 'onClick' },
-    size: {
-      control: { type: 'select' },
-      options: ['small', 'medium', 'large'],
-    },
   },
-} satisfies Meta<ButtonProps>;
+} ;
 
 export default meta;
-type Story = StoryObj<ButtonProps>;
 
 // More on writing stories with args: https://storybook.js.org/docs/web-components/writing-stories/args
-export const Primary: Story = {
-  args: {
-    primary: true,
-    label: 'Button',
-  },
+export const Primary: any = {
+    args: {
+        onclick: "", 
+        label: 'Knapptext',
+    },
 };
 
-export const Secondary: Story = {
-  args: {
-    label: 'Button',
-  },
-};
-
-export const Large: Story = {
-  args: {
-    size: 'large',
-    label: 'Button',
-  },
-};
-
-export const Small: Story = {
-  args: {
-    size: 'small',
-    label: 'Button',
-  },
+export const knapplänk: any = {
+    args: {
+        href: "https://www.ntigymnasiet.se/", 
+        label: 'Klickar du på denna så hamnar du på NTI',
+    },
 };
