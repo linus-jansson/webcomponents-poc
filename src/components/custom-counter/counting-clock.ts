@@ -10,7 +10,14 @@ export class CountingClock extends LitElement {
     @property({ type: Number })
     tickInterval = 1000
 
-    private formatTime = (time: Date) => dateFormater(time, this.format);
+    private formatTime = (time: Date) => {
+        try {
+            return dateFormater(time, this.format)
+        }
+        catch {
+            return new Date();
+        }
+    }
     private dateNow = this.formatTime(new Date())!;
     private ticker : NodeJS.Timer | undefined;
     private setTicker = () => {
