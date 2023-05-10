@@ -10,9 +10,12 @@ export class NTIButton extends LitElement {
     @property({ type: Function })
     onClick = () => {};
 
+    @property({ type: String })
+    size = "default"
+
     render() {
         return html`
-            <button class="custom-button" @click=${this._onClick}>
+            <button class="custom-button ${this._getSize()}" @click=${this._onClick}>
                 <slot>
                     Det här borde inte synnas
                 </slot>
@@ -27,6 +30,17 @@ export class NTIButton extends LitElement {
         
         if (this.onClick) {
             this.onClick()
+        }
+    }
+
+    private _getSize() {
+        switch (this.size) {
+            case "small":
+                return "button-small"
+            case "large":
+                return "button-large"
+            default:
+                return "default"
         }
     }
 
@@ -53,6 +67,17 @@ export class NTIButton extends LitElement {
             transition: all .4s ease-in-out;
             border: 0;
         }
+
+        .custom-button.button-small {
+            font-size: 16px;
+            padding: 17px 45px;
+        }
+
+        .custom-button.button-large {
+            font-size: 22px;
+            padding: 25px 60px;
+        }
+
         .custom-button:hover{
             background-position: 100% 0;
             -webkit-transition: all .4s ease-in-out;
