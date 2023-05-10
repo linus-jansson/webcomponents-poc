@@ -1,7 +1,5 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
-import { LitElement, html } from 'lit';
+import { html } from 'lit';
 import './nti-button';
-
 
 // More on how to set up stories at: https://storybook.js.org/docs/web-components/writing-stories/introduction
 const meta = {
