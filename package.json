@@ -1,8 +1,12 @@
 {
-  "name": "webcomponents-storybook-example",
+  "name": "@linus_janns/webcomponents",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.0.1",
   "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/webcomponents.js",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",

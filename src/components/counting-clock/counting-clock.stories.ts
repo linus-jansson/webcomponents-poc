@@ -1,5 +1,5 @@
 import { html } from 'lit';
-import './counting-clock'
+import '.'
 
 const meta = {
     title: 'custom/CountingClock',
