@@ -7,12 +7,43 @@
     <title>Document</title>
     <script defer type="module" src="https://cdn.jsdelivr.net/npm/@linus_janns/webcomponents@0.0.4/dist/webcomponents.js"></script>
 </head>
+<style>
+    body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    main {
+        padding: 1rem;
+    }
+
+    .button-div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+</style>
 <body>
-    <nti-button id="ntibutton">Web component button</nti-button>
-    <nti-button href="https://ntigymnasiet.se/" size="small">Web component button link</nti-button>
-    <p>Current time with ms: <counting-clock format="HH:MM:ss:SSS" tickInterval="100"></counting-clock></p>
-    <p>Current time with: <counting-clock format="HH:MM:ss" tickInterval="100"></counting-clock></p>
-    <p>Current time with full date: <counting-clock format="" tickInterval="100"></counting-clock></p>
+    <main>
+        <div class="button-div">
+            <h3>NTI knapp med onclick event</h3>
+            <nti-button id="ntibutton">Web component button</nti-button>
+        </div>
+        <div class="button-div">
+            <h3>NTI knapp med länk</h3>
+            <nti-button href="https://ntigymnasiet.se/" size="small" target="_blank">Web component button link</nti-button>
+        </div>
+        <div>
+            <h3>Klockslag</h3>
+            <div>
+                <p>Current time with ms: <counting-clock format="HH:MM:ss:SSS" tickInterval="100"></counting-clock></p>
+                <p>Current time with: <counting-clock format="HH:MM:ss" tickInterval="100"></counting-clock></p>
+                <p>Current time with full date: <counting-clock format="" tickInterval="100"></counting-clock></p>
+            </div>
+
+        </div>
+    </main>
 </body>
     <script>
         document.querySelector("#ntibutton")
