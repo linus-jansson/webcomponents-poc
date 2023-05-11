@@ -9,7 +9,9 @@
 </head>
 <body>
     <nti-button id="ntibutton">Web component button</nti-button>
-    <p>Current time: <counting-clock format="HH:MM:ss:SSS" tickInterval="100"></counting-clock></p>
+    <p>Current time with ms: <counting-clock format="HH:MM:ss:SSS" tickInterval="100"></counting-clock></p>
+    <p>Current time with: <counting-clock format="HH:MM:ss" tickInterval="100"></counting-clock></p>
+    <p>Current time with full date: <counting-clock format="" tickInterval="100"></counting-clock></p>
 </body>
     <script>
         document.querySelector("#ntibutton")
