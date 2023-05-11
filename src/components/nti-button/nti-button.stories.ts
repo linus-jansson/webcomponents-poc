@@ -5,9 +5,10 @@ import '.';
 const meta = {
   title: 'NTI/Buttons',
   tags: ['autodocs'],
-  render: (args: any) => html`<nti-button .href=${args.href} .onClick=${() => console.log("Hello world")} >${args.label}</nti-button>`,
+  render: (args: any) => html`<nti-button .href=${args.href} .onClick=${() => console.log("Hello world")} .size=${args.size} >${args.label}</nti-button>`,
   argTypes: {
     onClick: { action: 'onClick' },
+    size: { type: 'select', options: ['small', 'default', 'large'] },
   },
 } ;
 
