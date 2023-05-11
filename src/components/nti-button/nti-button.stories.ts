@@ -17,7 +17,6 @@ export default meta;
 // More on writing stories with args: https://storybook.js.org/docs/web-components/writing-stories/args
 export const Primary: any = {
     args: {
-        onclick: "", 
         label: 'Knapptext',
     },
 };
