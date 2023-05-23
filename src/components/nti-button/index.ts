@@ -3,16 +3,22 @@ import { customElement, property } from 'lit/decorators.js'
 
 @customElement('nti-button')
 export class NTIButton extends LitElement {
-       
+    
+    // Property ifall man vill navigera till en annan sida vid knapptryck
     @property({ type: String })
     href = null
 
+    // en default onClick funktion som inte gör något
     @property({ type: Function })
     onClick = () => {};
 
+    // Property för att ändra storlek på knappen
     @property({ type: String })
     size = "default"
 
+    // Property för att ändra target på länken
+    // _self är samma flik
+    // _blank är ny flik
     @property({ type: String })
     target = "_self"
 
@@ -27,10 +33,13 @@ export class NTIButton extends LitElement {
     }
 
     private _onClick() {
+        // Om href är satt så ändras sidan till href länken
+        // _self som defautl
         if (this.href && (this.href as string)?.length > 0) {
             window.open(this.href, this.target)
         }
         else {
+            // Annars körs funktionen som är satt i onClick
             this.onClick()
         }
     }
