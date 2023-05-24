@@ -3,21 +3,21 @@ import { customElement, property } from 'lit/decorators.js'
 import {styles} from './styles'
 
 @customElement('news-item')
-export class NTIButton extends LitElement {
+export class NewsItem extends LitElement {
     @property({ type: String })
-    image = null // https://www.ntigymnasiet.se/wp-content/uploads/resized/46/ntig-uppsala_338x220_7c73d4c01c11b17c176b7e0ec895b594.jpeg
+    image = '#' // https://www.ntigymnasiet.se/wp-content/uploads/resized/46/ntig-uppsala_338x220_7c73d4c01c11b17c176b7e0ec895b594.jpeg
 
     @property({ type: String })
-    title = null // NTI Gymnasiet och Uppsala universitet utvecklar undervisning i programmering
+    title = '' // NTI Gymnasiet och Uppsala universitet utvecklar undervisning i programmering
 
     @property({ type: String })
-    description = null // NTI Gymnasiet i Uppsala har sedan 2018 deltagit i ULF (utbildning, lärande, forskning), en statlig försöksverksamhet som främjar praktiknära forskning...
+    description = '' // NTI Gymnasiet i Uppsala har sedan 2018 deltagit i ULF (utbildning, lärande, forskning), en statlig försöksverksamhet som främjar praktiknära forskning...
 
     @property({ type: String })
-    date = null // date 2023-03-03
+    date = '' // date 2023-03-03
 
     @property({ type: String })
-    readmorelink = null // https://www.ntigymnasiet.se/nyheter/nti-gymnasiet-och-uppsala-universitet-utvecklar-undervisning-i-programmering/
+    readmorelink = 'null' // https://www.ntigymnasiet.se/nyheter/nti-gymnasiet-och-uppsala-universitet-utvecklar-undervisning-i-programmering/
 
     render() {
         return html`
@@ -45,6 +45,6 @@ export class NTIButton extends LitElement {
 
 declare global {
     interface HTMLElementTagNameMap {
-        'nti-button': NTIButton
+        'news-item': NewsItem
     }
 }
