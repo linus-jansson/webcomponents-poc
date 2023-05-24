@@ -1,4 +1,6 @@
+import {css} from 'lit'
 
+export const styles = css`
     .c-black {
         color: #222;
     }
@@ -106,3 +108,4 @@
         position: absolute;
         bottom: 0;
     }
+`;
